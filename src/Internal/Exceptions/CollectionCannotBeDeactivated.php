@@ -6,10 +6,10 @@ namespace TinyBlocks\Immutable\Internal\Exceptions;
 
 final class CollectionCannotBeDeactivated extends ImmutableException
 {
-    public function __construct(mixed $offset, string $class)
+    public function __construct(private readonly mixed $offset, private readonly string $class)
     {
         $template = 'Cannot unset collection element at offset <%s> in class <%s>.';
 
-        parent::__construct(message: $this->withMessage($template, $offset, $class));
+        parent::__construct(message: $this->withMessage($template, $this->offset, $this->class));
     }
 }
